@@ -1,5 +1,6 @@
 package wix.game.fifteen;
 
+import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 import wix.game.IPuzzleGame;
 import wix.game.validation.GridValidator;
@@ -13,8 +14,10 @@ import static java.util.stream.Collectors.toList;
 
 @Log4j
 public class FifteenGame implements IPuzzleGame {
+    @Getter
+    private final Integer[] board;
+
     private final IGridValidator validator;
-    Integer[] board;
     int height;
     int width;
     int length;
@@ -26,16 +29,38 @@ public class FifteenGame implements IPuzzleGame {
         this.height = height;
         this.length = height * width;
 
-        this.board = new Integer[length];
+        board = new Integer[length];
+        currPosition = length - 1;
         validator = new GridValidator(width, height);
-
         init();
     }
 
     private void init() {
-        while (!validator.isValid(generateBoard())){
+        while (!validator.isValid(generateBoard())) {
             log.debug("Generated invalid initial board, regenerating ...");
         }
+    }
+
+    @Override
+    public void moveTo(Move direction) {
+        if(isValidMove(direction)){
+            swap(direction);
+            isGameFinished();
+        } else {
+            throw new RuntimeException("Can't move into direction=["+direction+"], try other");
+        }
+    }
+
+    private void isGameFinished() {
+
+    }
+
+    private void swap(Move direction) {
+
+    }
+
+    private boolean isValidMove(Move direction) {
+        return false;
     }
 
     private Integer[] generateBoard() {
@@ -49,10 +74,6 @@ public class FifteenGame implements IPuzzleGame {
             board[i] = range.get(i);
         }
 
-        return board;
-    }
-
-    public Integer[] board() {
         return board;
     }
 }
