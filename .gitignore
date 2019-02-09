@@ -3,6 +3,7 @@
 
 # Ignore IDEA files
 .idea/
+.idea/dictionaries
 
 # Log file
 *.log
