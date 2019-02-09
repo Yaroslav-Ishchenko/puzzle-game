@@ -37,6 +37,8 @@ public class GamePresenter implements IGamePresenter {
         System.out.println("To move 'X' to the RIGHT enter symbol 'r' and press ENTER");
         System.out.println("To move 'X' to the UP enter symbol 'u' and press ENTER");
         System.out.println("To move 'X' to the DOWN enter symbol 'd' and press ENTER");
+        System.out.println("To exit game enter 'quit' and press ENTER");
+        System.out.println("To start game from beginning enter 'reset' and press ENTER");
         System.out.println();
     }
 
