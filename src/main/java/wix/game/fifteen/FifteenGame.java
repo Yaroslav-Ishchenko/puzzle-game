@@ -30,7 +30,6 @@ public class FifteenGame implements IPuzzleGame {
         this.length = height * width;
 
         board = new Integer[length];
-        currPosition = length - 1;
         validator = new GridValidator(width, height);
         init();
     }
@@ -39,27 +38,70 @@ public class FifteenGame implements IPuzzleGame {
         while (!validator.isValid(generateBoard())) {
             log.debug("Generated invalid initial board, regenerating ...");
         }
+        currPosition = length - 1;
     }
 
     @Override
     public void moveTo(Move direction) {
-        if(isValidMove(direction)){
-            swap(direction);
-            isGameFinished();
+        if (isValidMove(direction)) {
+            move(direction);
+            isBoardComplete();
         } else {
-            throw new RuntimeException("Can't move into direction=["+direction+"], try other");
+           // throw new RuntimeException("Can't move into direction=[" + direction + "], try other");
         }
     }
 
-    private void isGameFinished() {
-
+    private void move(Move direction) {
+        switch (direction) {
+            case LEFT:
+                board[currPosition] = board[currPosition - 1];
+                board[currPosition - 1] = null;
+                currPosition -= 1;
+                break;
+            case RIGHT:
+                board[currPosition] = board[currPosition + 1];
+                board[currPosition + 1] = null;
+                currPosition += 1;
+                break;
+            case UP:
+                board[currPosition] = board[currPosition - width];
+                board[currPosition - width] = null;
+                currPosition -= width;
+                break;
+            case DOWN:
+                board[currPosition] = board[currPosition + width];
+                board[currPosition + width] = null;
+                currPosition += width;
+                break;
+        }
+        if (isBoardComplete()) {
+            throw new RuntimeException("Game finished!");
+        }
     }
 
-    private void swap(Move direction) {
-
+    private boolean isBoardComplete() {
+        if (board[0] != null) {
+            return false;
+        }
+        for (int i = 1; i < length; i++) {
+            if (board[i] != i) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean isValidMove(Move direction) {
+        switch (direction) {
+            case LEFT:
+                return currPosition > 0;
+            case RIGHT:
+                return currPosition < length - 1;
+            case UP:
+                return currPosition - width > 0;
+            case DOWN:
+                return currPosition + width < length -1;
+        }
         return false;
     }
 
