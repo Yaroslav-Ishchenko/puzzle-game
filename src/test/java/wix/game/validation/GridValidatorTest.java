@@ -11,7 +11,7 @@ public class GridValidatorTest {
 
     @Before
     public void setUp() {
-        gridValidator = new GridValidator(4, 4);
+        gridValidator = new GridValidator(16);
     }
 
     @Test
@@ -34,14 +34,14 @@ public class GridValidatorTest {
 
     @Test
     public void testOddWidthBlankOddRowInversionsEvenGridValid() {
-        gridValidator = new GridValidator(3, 3);
+        gridValidator = new GridValidator(9);
         Integer[] sequence = {1, 8, 2, 5, 4, 3, 7, 6, 0};
         assertTrue(gridValidator.isValid(sequence));
     }
 
     @Test
     public void testOddWidthBlankEvenRowInversionsOddGridInalid() {
-        gridValidator = new GridValidator(3, 3);
+        gridValidator = new GridValidator(9);
         Integer[] sequence = {1, 8, 2, 5, 4, 3, 6, 7, 0};
         assertFalse(gridValidator.isValid(sequence));
     }

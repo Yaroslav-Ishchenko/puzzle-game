@@ -6,12 +6,11 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 public class GridValidator implements IGridValidator {
-    private final int width;
-    private final int height;
+    private final int length;
 
     @Override
     public boolean isValid(Integer[] board) {
-        int length = width * height;
+        int columnRowLength = (int) Math.sqrt(length);
         int totalInversions = 0;
         int blankPosition = 0;
         int rowNum = 0;
@@ -19,25 +18,25 @@ public class GridValidator implements IGridValidator {
         for (int i = 0; i < length - 1; i++) {
             int inversion = 0; // count inversions to the right from current element position
 
-            if (i % width == 0) { // count row
+            if (i % columnRowLength == 0) { // count row
                 rowNum++;
             }
 
-            if (board[i] == null) { // fid blank cell
+            if (board[i] == 0) { // fid blank cell
                 blankPosition = rowNum;
                 continue;
             }
 
             for (int j = i + 1; j < length; j++) { // look ahead
-                if (board[j] != null && board[i] > board[j]) {
+                if (board[j] != 0 && board[i] > board[j]) {
                     inversion++;
                 }
             }
             totalInversions += inversion;
         }
-        //( (grid width odd) && (#inversions even) )  ||  ( (grid width even) && ((blank on odd row from bottom) == (#inversions even)) )
+        //( (board width odd) && (#inversions even) )  ||  ( (board width even) && ((blank on odd row from bottom) == (#inversions even)) )
         log.debug("Total Inversions Count= " + totalInversions + "");
-        boolean gridWithEven = width % 2 == 0;
+        boolean gridWithEven = columnRowLength % 2 == 0;
         boolean inversionsEven = totalInversions % 2 == 0;
         boolean blankOnEvenRow = blankPosition % 2 == 0;
 
