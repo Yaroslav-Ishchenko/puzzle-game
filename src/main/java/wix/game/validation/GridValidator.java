@@ -15,7 +15,7 @@ public class GridValidator implements IGridValidator {
         int totalInversions = 0;
         int blankPosition = 0;
         int rowNum = 0;
-        //count inversions for every element in the sequence
+        //count inversions for every element in the sequence except last one
         for (int i = 0; i < length - 1; i++) {
             int inversion = 0; // count inversions to the right from current element position
 
@@ -23,12 +23,12 @@ public class GridValidator implements IGridValidator {
                 rowNum++;
             }
 
-            if (board[i] == 0) { // the blank tile
-                blankPosition = rowNum; // save the row on which encountered
+            if (board[i] == 0) { // fid blank cell
+                blankPosition = rowNum;
                 continue;
             }
 
-            for (int j = i + 1; j < length; j++) {
+            for (int j = i + 1; j < length; j++) { // look ahead
                 if (board[i] > board[j] && board[j] != 0) {
                     inversion++;
                 }
