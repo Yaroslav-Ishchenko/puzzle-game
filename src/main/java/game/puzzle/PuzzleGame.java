@@ -16,6 +16,11 @@ public class PuzzleGame implements IPuzzleGame {
         this.presenter = new GamePresenter(this);
     }
 
+    PuzzleGame(Board board, IGamePresenter presenter) {
+        this.board = board;
+        this.presenter = presenter;
+    }
+
     @Override
     public void start() {
         board.init();

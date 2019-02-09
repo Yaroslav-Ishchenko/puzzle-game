@@ -11,12 +11,14 @@ import static game.puzzle.IPuzzleGame.Move.RIGHT;
 import static game.puzzle.IPuzzleGame.Move.UP;
 
 public class GamePresenter implements IGamePresenter {
+    //Commands
     private static final String QUIT = "quit";
     private static final String RESET = "reset";
     private static final String L = "l";
     private static final String R = "r";
     private static final String D = "d";
     private static final String U = "u";
+
     private final Scanner keyboard;
     private final IPuzzleGame puzzleGame;
 
@@ -41,6 +43,7 @@ public class GamePresenter implements IGamePresenter {
     @Override
     public void begin() {
         boolean exit = false;
+        draw();
         while (!exit) {
             String input = keyboard.nextLine();
             if (input != null && !input.isEmpty()) {
@@ -76,7 +79,6 @@ public class GamePresenter implements IGamePresenter {
         keyboard.close();
     }
 
-    @Override
     public void draw() {
         Integer[] grid = puzzleGame.getGrid();
         int widthHeight = (int) sqrt(grid.length);
