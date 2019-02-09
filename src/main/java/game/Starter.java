@@ -2,8 +2,6 @@ package game;
 
 import game.puzzle.FifteenPuzzleGame;
 
-import java.io.IOException;
-
 /**
  * Hello world!
  */

@@ -15,6 +15,7 @@ import static java.util.stream.Collectors.toList;
 public class Board {
     @Getter
     final Integer[] grid;
+
     int currPosition;
     private int length;
     private int columnRowLength;
@@ -25,7 +26,7 @@ public class Board {
         this.length = length;
         this.validator = validator;
         this.columnRowLength = (int) Math.sqrt(length);
-        grid = new Integer[length];
+        this.grid = new Integer[length];
     }
 
     public void init() {

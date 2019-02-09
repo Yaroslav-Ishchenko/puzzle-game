@@ -79,7 +79,7 @@ public class GamePresenter implements IGamePresenter {
         keyboard.close();
     }
 
-    public void draw() {
+    private void draw() {
         Integer[] grid = puzzleGame.getGrid();
         int widthHeight = (int) sqrt(grid.length);
         for (int i = 1; i <= grid.length; i++) {
