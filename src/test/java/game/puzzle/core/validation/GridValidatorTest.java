@@ -1,4 +1,4 @@
-package wix.game.validation;
+package game.puzzle.core.validation;
 
 import org.junit.Before;
 import org.junit.Test;

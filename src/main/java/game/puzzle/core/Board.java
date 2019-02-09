@@ -1,10 +1,10 @@
-package wix.game.fifteen;
+package game.puzzle.core;
 
 import lombok.Getter;
 import lombok.extern.log4j.Log4j;
-import wix.game.IPuzzleGame;
-import wix.game.validation.GridValidator;
-import wix.game.validation.IGridValidator;
+import game.puzzle.IPuzzleGame;
+import game.puzzle.core.validation.GridValidator;
+import game.puzzle.core.validation.IGridValidator;
 
 import java.util.List;
 import java.util.stream.IntStream;

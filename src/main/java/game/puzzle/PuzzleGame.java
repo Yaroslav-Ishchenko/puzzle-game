@@ -1,9 +1,9 @@
-package wix.game;
+package game.puzzle;
 
 import lombok.extern.log4j.Log4j;
-import wix.game.fifteen.Board;
-import wix.presentation.GamePresenter;
-import wix.presentation.IGamePresenter;
+import game.puzzle.core.Board;
+import game.puzzle.presentation.GamePresenter;
+import game.puzzle.presentation.IGamePresenter;
 
 @Log4j
 public class PuzzleGame implements IPuzzleGame {

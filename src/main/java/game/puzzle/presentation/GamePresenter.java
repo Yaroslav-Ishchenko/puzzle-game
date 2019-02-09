@@ -1,14 +1,14 @@
-package wix.presentation;
+package game.puzzle.presentation;
 
-import wix.game.IPuzzleGame;
+import game.puzzle.IPuzzleGame;
 
 import java.util.Scanner;
 
 import static java.lang.Math.sqrt;
-import static wix.game.IPuzzleGame.Move.DOWN;
-import static wix.game.IPuzzleGame.Move.LEFT;
-import static wix.game.IPuzzleGame.Move.RIGHT;
-import static wix.game.IPuzzleGame.Move.UP;
+import static game.puzzle.IPuzzleGame.Move.DOWN;
+import static game.puzzle.IPuzzleGame.Move.LEFT;
+import static game.puzzle.IPuzzleGame.Move.RIGHT;
+import static game.puzzle.IPuzzleGame.Move.UP;
 
 public class GamePresenter implements IGamePresenter {
     private static final String QUIT = "quit";

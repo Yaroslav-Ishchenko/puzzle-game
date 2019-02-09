@@ -1,6 +1,6 @@
-package wix;
+package game;
 
-import wix.game.fifteen.FifteenPuzzleGame;
+import game.puzzle.FifteenPuzzleGame;
 
 import java.io.IOException;
 

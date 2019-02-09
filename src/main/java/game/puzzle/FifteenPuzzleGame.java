@@ -1,6 +1,4 @@
-package wix.game.fifteen;
-
-import wix.game.PuzzleGame;
+package game.puzzle;
 
 public class FifteenPuzzleGame extends PuzzleGame {
 

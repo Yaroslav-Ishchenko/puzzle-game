@@ -1,4 +1,4 @@
-package wix.game;
+package game.puzzle;
 
 public interface IPuzzleGame {
 
