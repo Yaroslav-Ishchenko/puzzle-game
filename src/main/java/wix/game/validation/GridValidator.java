@@ -36,7 +36,7 @@ public class GridValidator implements IGridValidator {
             totalInversions += inversion;
         }
         //( (grid width odd) && (#inversions even) )  ||  ( (grid width even) && ((blank on odd row from bottom) == (#inversions even)) )
-        log.info("Total Inversions Count= " + totalInversions + "");
+        log.debug("Total Inversions Count= " + totalInversions + "");
         boolean gridWithEven = width % 2 == 0;
         boolean inversionsEven = totalInversions % 2 == 0;
         boolean blankOnEvenRow = blankPosition % 2 == 0;

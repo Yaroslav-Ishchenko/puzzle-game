@@ -1,19 +1,18 @@
 package wix.game.fifteen;
 
-import lombok.extern.java.Log;
-import wix.game.IGame;
+import lombok.extern.log4j.Log4j;
+import wix.game.IPuzzleGame;
 import wix.game.validation.GridValidator;
 import wix.game.validation.IGridValidator;
 
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
 
 import static java.util.Collections.shuffle;
 import static java.util.stream.Collectors.toList;
 
-@Log
-public class FifteenGame implements IGame {
+@Log4j
+public class FifteenGame implements IPuzzleGame {
     private final IGridValidator validator;
     Integer[] board;
     int height;
@@ -35,7 +34,7 @@ public class FifteenGame implements IGame {
 
     private void init() {
         while (!validator.isValid(generateBoard())){
-            log.warning("Generated invalid initial board, regenerating ...");
+            log.debug("Generated invalid initial board, regenerating ...");
         }
     }
 
@@ -45,6 +44,7 @@ public class FifteenGame implements IGame {
             .collect(toList());
 
         shuffle(range);
+
         for (int i = 0; i < length - 1; i++) {
             board[i] = range.get(i);
         }
