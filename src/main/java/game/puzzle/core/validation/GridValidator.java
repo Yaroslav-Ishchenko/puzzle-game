@@ -18,7 +18,7 @@ public class GridValidator implements IGridValidator {
         for (int i = 0; i < length - 1; i++) {
             int inversion = 0; // count inversions to the right from current element position
 
-            if (i % columnRowLength == 0) { // count row
+            if (i+1 % columnRowLength == 0) { // count row
                 rowNum++;
             }
 
@@ -34,17 +34,20 @@ public class GridValidator implements IGridValidator {
             }
             totalInversions += inversion;
         }
-        //( (board width odd) && (#inversions even) )  ||  ( (board width even) && ((blank on odd row from bottom) == (#inversions even)) )
+
         log.debug("Total Inversions Count= " + totalInversions + "");
         boolean gridWithEven = columnRowLength % 2 == 0;
         boolean inversionsEven = totalInversions % 2 == 0;
         boolean blankOnEvenRow = blankPosition % 2 == 0;
+        log.debug("gridWithEven= " + gridWithEven + "");
+        log.debug("inversionsEven= " + inversionsEven + "");
+        log.debug("blankOnEvenRow= " + blankOnEvenRow + "");
 
         if (gridWithEven) {
             if (blankOnEvenRow) {
-                return inversionsEven;
-            } else {
                 return !inversionsEven;
+            } else {
+                return inversionsEven;
            }
         } else {
             return inversionsEven;

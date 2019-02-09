@@ -1,10 +1,10 @@
 package game.puzzle;
 
+import game.puzzle.core.Move;
+
 public interface IPuzzleGame {
 
     Integer[] getGrid();
-
-    enum Move {LEFT, RIGHT, UP, DOWN}
 
     void start();
 

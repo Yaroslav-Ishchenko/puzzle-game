@@ -4,11 +4,11 @@ import game.puzzle.IPuzzleGame;
 
 import java.util.Scanner;
 
+import static game.puzzle.core.Move.DOWN;
+import static game.puzzle.core.Move.LEFT;
+import static game.puzzle.core.Move.RIGHT;
+import static game.puzzle.core.Move.UP;
 import static java.lang.Math.sqrt;
-import static game.puzzle.IPuzzleGame.Move.DOWN;
-import static game.puzzle.IPuzzleGame.Move.LEFT;
-import static game.puzzle.IPuzzleGame.Move.RIGHT;
-import static game.puzzle.IPuzzleGame.Move.UP;
 
 public class GamePresenter implements IGamePresenter {
     //Commands

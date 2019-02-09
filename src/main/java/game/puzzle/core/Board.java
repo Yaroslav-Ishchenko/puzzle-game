@@ -1,10 +1,9 @@
 package game.puzzle.core;
 
-import lombok.Getter;
-import lombok.extern.log4j.Log4j;
-import game.puzzle.IPuzzleGame;
 import game.puzzle.core.validation.GridValidator;
 import game.puzzle.core.validation.IGridValidator;
+import lombok.Getter;
+import lombok.extern.log4j.Log4j;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -15,18 +14,18 @@ import static java.util.stream.Collectors.toList;
 @Log4j
 public class Board {
     @Getter
-    private final Integer[] grid;
-
-    private final IGridValidator validator;
+    final Integer[] grid;
+    int currPosition;
     private int length;
     private int columnRowLength;
-    private int currPosition;
 
-    public Board(int length) {
+    private final IGridValidator validator;
+
+    public Board(IGridValidator validator, int length) {
         this.length = length;
+        this.validator = validator;
         this.columnRowLength = (int) Math.sqrt(length);
         grid = new Integer[length];
-        validator = new GridValidator(length);
     }
 
     public void init() {
@@ -36,7 +35,7 @@ public class Board {
         currPosition = length - 1;
     }
 
-    public void move(IPuzzleGame.Move direction) {
+    public void move(Move direction) {
         if (!isValidMove(direction)) {
             log.warn("Can't move into direction=[" + direction + "], try other");
             return;
@@ -92,7 +91,7 @@ public class Board {
         return grid;
     }
 
-    private boolean isValidMove(IPuzzleGame.Move direction) {
+    private boolean isValidMove(Move direction) {
         switch (direction) {
             case LEFT:
                 return currPosition > 0 && currPosition % columnRowLength != 0;

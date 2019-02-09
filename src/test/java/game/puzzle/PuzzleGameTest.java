@@ -1,6 +1,7 @@
 package game.puzzle;
 
 import game.puzzle.core.Board;
+import game.puzzle.core.Move;
 import game.puzzle.presentation.IGamePresenter;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,10 +51,10 @@ public class PuzzleGameTest {
     @Test
     public void ShouldMoveTo() {
         //when
-        puzzleGame.moveTo(IPuzzleGame.Move.LEFT);
+        puzzleGame.moveTo(Move.LEFT);
 
         //then
-        verify(board).move(eq(IPuzzleGame.Move.LEFT));
+        verify(board).move(eq(Move.LEFT));
         verifyNoMoreInteractions(board);
     }
 

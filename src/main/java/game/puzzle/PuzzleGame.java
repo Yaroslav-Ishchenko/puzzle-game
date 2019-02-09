@@ -1,9 +1,11 @@
 package game.puzzle;
 
-import lombok.extern.log4j.Log4j;
 import game.puzzle.core.Board;
+import game.puzzle.core.Move;
+import game.puzzle.core.validation.GridValidator;
 import game.puzzle.presentation.GamePresenter;
 import game.puzzle.presentation.IGamePresenter;
+import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class PuzzleGame implements IPuzzleGame {
@@ -12,7 +14,8 @@ public class PuzzleGame implements IPuzzleGame {
 
     public PuzzleGame(int width, int height) {
         assert width == height;
-        this.board = new Board(width * height);
+        int length = width * height;
+        this.board = new Board(new GridValidator(length), length);
         this.presenter = new GamePresenter(this);
     }
 
