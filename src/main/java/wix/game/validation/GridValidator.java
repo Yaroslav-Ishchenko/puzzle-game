@@ -23,13 +23,13 @@ public class GridValidator implements IGridValidator {
                 rowNum++;
             }
 
-            if (board[i] == 0) { // fid blank cell
+            if (board[i] == null) { // fid blank cell
                 blankPosition = rowNum;
                 continue;
             }
 
             for (int j = i + 1; j < length; j++) { // look ahead
-                if (board[i] > board[j] && board[j] != 0) {
+                if (board[j] != null && board[i] > board[j]) {
                     inversion++;
                 }
             }

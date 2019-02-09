@@ -1,5 +1,6 @@
 package wix.game.fifteen;
 
+import lombok.extern.java.Log;
 import wix.game.IGame;
 import wix.game.validation.GridValidator;
 import wix.game.validation.IGridValidator;
@@ -11,10 +12,10 @@ import java.util.stream.IntStream;
 import static java.util.Collections.shuffle;
 import static java.util.stream.Collectors.toList;
 
+@Log
 public class FifteenGame implements IGame {
-    private final static Random RANDOM = new Random();
     private final IGridValidator validator;
-    int[] board;
+    Integer[] board;
     int height;
     int width;
     int length;
@@ -26,13 +27,20 @@ public class FifteenGame implements IGame {
         this.height = height;
         this.length = height * width;
 
-        this.board = new int[length];
+        this.board = new Integer[length];
         validator = new GridValidator(width, height);
-        generateBoard();
+
+        init();
     }
 
-    public int[] generateBoard() {
-        List<Integer> range = IntStream.range(1, width * height)
+    private void init() {
+        while (!validator.isValid(generateBoard())){
+            log.warning("Generated invalid initial board, regenerating ...");
+        }
+    }
+
+    private Integer[] generateBoard() {
+        List<Integer> range = IntStream.range(1, length) //change geneartion here if you need 0 at any cell of the grid
             .boxed()
             .collect(toList());
 
@@ -44,7 +52,7 @@ public class FifteenGame implements IGame {
         return board;
     }
 
-    public int[] board() {
+    public Integer[] board() {
         return board;
     }
 }
