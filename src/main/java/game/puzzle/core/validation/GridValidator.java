@@ -41,10 +41,6 @@ public class GridValidator implements IGridValidator {
         log.debug("inversionsEven= " + inversionsEven + "");
         log.debug("blankOnEvenRow= " + blankOnEvenRow + "");
 
-        if (gridWithEven) {
-            return blankOnEvenRow == inversionsEven;
-        } else {
-            return inversionsEven;
-        }
+        return gridWithEven ? blankOnEvenRow == inversionsEven : inversionsEven;
     }
 }
