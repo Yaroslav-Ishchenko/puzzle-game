@@ -11,12 +11,11 @@ public class GridValidator implements IGridValidator {
     @Override
     public boolean isValid(Integer[] board) {
         int columnRowLength = (int) Math.sqrt(length);
-        int totalInversions = 0;
+        int inversion = 0;
         int blankPosition = 0;
         int rowNum = 0;
         //count inversions for every element in the sequence except last one
         for (int i = 0; i < length; i++) {
-            int inversion = 0; // count inversions to the right from current element position
 
             if (i % columnRowLength == 0) { // count row
                 rowNum++;
@@ -32,12 +31,11 @@ public class GridValidator implements IGridValidator {
                     inversion++;
                 }
             }
-            totalInversions += inversion;
         }
 
-        log.debug("Total Inversions Count= " + totalInversions + "");
+        log.debug("Total Inversions Count= " + inversion + "");
         boolean gridWithEven = columnRowLength % 2 == 0;
-        boolean inversionsEven = totalInversions % 2 == 0;
+        boolean inversionsEven = inversion % 2 == 0;
         boolean blankOnEvenRow = blankPosition % 2 == 0;
         log.debug("gridWithEven= " + gridWithEven + "");
         log.debug("inversionsEven= " + inversionsEven + "");
