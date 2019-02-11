@@ -15,10 +15,10 @@ public class GridValidator implements IGridValidator {
         int blankPosition = 0;
         int rowNum = 0;
         //count inversions for every element in the sequence except last one
-        for (int i = 0; i < length - 1; i++) {
+        for (int i = 0; i < length; i++) {
             int inversion = 0; // count inversions to the right from current element position
 
-            if (i+1 % columnRowLength == 0) { // count row
+            if (i % columnRowLength == 0) { // count row
                 rowNum++;
             }
 
@@ -45,9 +45,9 @@ public class GridValidator implements IGridValidator {
 
         if (gridWithEven) {
             if (blankOnEvenRow) {
-                return !inversionsEven;
-            } else {
                 return inversionsEven;
+            } else {
+                return !inversionsEven;
            }
         } else {
             return inversionsEven;
